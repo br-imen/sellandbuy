@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+    My products
+
+{% endblock %}
+
+
+{% block main %}
+
+    <div id = "button-add">
+    <a href="/add-a-product" > <button type="button" class="btn btn-primary">  add new product </button> </a>
+    </div>
+
+  <section class="jumbotron text-center">
+      <div class = "container" >
+        <div class="row" id="products">
+
+            {% for product in products %}
+              <div class ="col-md-4">
+                <div class="card mb-4 box-shadow">
+                  <img class="card-img-top" src="static/{{product.image}}" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text">{{product.description}}</p>
+                  </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">{{ "$%0.2f" | format( product.price / 100) }} </li>
+                    </ul>
+                    <div class="card-footer">
+                    <small class="text-muted"><a href="/edit?id={{product.id}}&name_product={{product.name}}&description={{product.description}}&price={{product.price}}&image={{product.image}}&categorie_id={{product.categorie_id}}" class="btn btn-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Edit</a></small>
+                    <small class="text-muted"><a href="/delete?id={{product.id}}" class="btn btn-outline-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Delete</a></small>
+                    </div>
+                </div>
+              </div>
+            {% endfor %}
+
+        </div>
+      </div>
+  </section>
+
+  <button id="button" type="button" class="btn btn-primary" {{disabled}}> More </button>
+
+  <script>
+
+    let button = document.querySelector("#button");
+    let content ;
+    let counter = 2;
+    let htmlProduct = "";
+
+    button.addEventListener('click', async function(){
+      let response = await fetch('/my-products?counter=' + counter);
+      content = await response.json();
+      if (content)
+      {
+        counter = content.counter;
+      }
+      let products = content.products;
+      let disabled = content.disabled;
+
+      for ( let id in products)
+      {
+        products[id].price = (products[id].price / 100).toFixed(2);
+        htmlProduct += '<div class ="col-md-4">';
+        htmlProduct += '<div class="card mb-4 box-shadow">';
+        htmlProduct += '<img class="card-img-top" src="static/'+products[id].image+'" alt="Card image cap">';
+        htmlProduct += '<div class="card-body">';
+        htmlProduct += '<h5 class="card-title">'+products[id].name+'</h5>';
+        htmlProduct += '<p class="card-text">'+products[id].description+'</p>';
+        htmlProduct += '</div>';
+        htmlProduct += '<ul class="list-group list-group-flush">';
+        htmlProduct += '<li class="list-group-item">$'+products[id].price+'</li>';
+        htmlProduct += '</ul>';
+        htmlProduct += '<div class="card-footer">';
+        htmlProduct += '<small class="text-muted"><a href="/edit?id='+products[id].id+'&name_product='+products[id].name+'&description='+products[id].description+'&price='+products[id].price+'&image='+products[id].image+'&categorie_id'+products[id].categorie_id+'" class="btn btn-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Edit</a></small>';
+        htmlProduct += '<small class="text-muted"><a href="/delete?id='+products.id+'" class="btn btn-outline-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Delete</a></small>';
+        htmlProduct += '</div>';
+        htmlProduct += '</div>';
+        htmlProduct += '</div>';
+      }
+
+      document.querySelector("#products").innerHTML += htmlProduct;
+
+      if (content.disabled)
+        {
+          document.querySelector("#button").setAttribute("disabled", "");
+        }
+      else {
+        document.querySelector("#button").removeAttribute("disabled");
+      }
+
+    });
+
+
+  </script>
+
+{% endblock %}

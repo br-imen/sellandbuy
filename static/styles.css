@@ -1,0 +1,25 @@
+.form > * {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+#button-add {
+    text-align: center;
+    padding: 30px;
+}
+
+.col-md-4 {
+    padding: 30px;
+}
+
+.card mb-4 box-shadow {
+    width: 18rem;
+}
+
+.card-img-top {
+    height:225px;
+    width:100%;
+    display:block;
+}
+

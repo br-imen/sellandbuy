@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+    Profile
+
+{% endblock %}
+
+
+
+{% block main %}
+<form action="/edit-profile" method="post">
+    {% for user in dict %}
+    <div class="mb-3" >
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" value={{user.username}} type="text">
+    </div>
+    <div class="mb-3">
+      <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="firstname" name="firstname" value={{user.first_name}} type="text">
+    </div>
+    <div class="mb-3">
+      <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="lastname" name="lastname" value={{user.last_name}} type="text">
+    </div>
+    <div class="mb-3">
+      <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="email" name="email" value={{user.email}} type="text">
+    </div>
+    {% endfor %}
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="your password" type="password">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" id="confirmation" name="confirmation" placeholder="Confirm password" type="password">
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-primary btn-sm "  type="submit" style="width: 12%; margin : 12px;">Update</button>
+    </div>
+  </div>
+  <a href="/delete-account" class="btn btn-outline-danger btn-sm"  style="margin: 15px;"> Delete account </a>
+
+
+
+{% endblock %}
