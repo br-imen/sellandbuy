@@ -17,9 +17,11 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Configuration for upload image
-UPLOAD_FOLDER = '/workspaces/106651148/project/static'
+
+UPLOAD_FOLDER = os.path.join(APP_ROOT, '/static')
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
