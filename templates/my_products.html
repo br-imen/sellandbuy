@@ -20,7 +20,7 @@
             {% for product in products %}
               <div class ="col-md-4">
                 <div class="card mb-4 box-shadow">
-                  <img class="card-img-top" src="static/{{product.image}}" alt="Card image cap">
+                  <img class="card-img-top" src="media/{{product.image}}" alt="Card image cap">
                   <div class="card-body">
                     <h5 class="card-title">{{product.name}}</h5>
                     <p class="card-text">{{product.description}}</p>
@@ -64,7 +64,7 @@
         products[id].price = (products[id].price / 100).toFixed(2);
         htmlProduct += '<div class ="col-md-4">';
         htmlProduct += '<div class="card mb-4 box-shadow">';
-        htmlProduct += '<img class="card-img-top" src="static/'+products[id].image+'" alt="Card image cap">';
+        htmlProduct += '<img class="card-img-top" src="media/'+products[id].image+'" alt="Card image cap">';
         htmlProduct += '<div class="card-body">';
         htmlProduct += '<h5 class="card-title">'+products[id].name+'</h5>';
         htmlProduct += '<p class="card-text">'+products[id].description+'</p>';

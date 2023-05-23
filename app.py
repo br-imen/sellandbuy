@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, session
+from flask import Flask, request, render_template, redirect, session, send_from_directory
 from flask_session import Session
 from email_validator import validate_email, EmailNotValidError
 import hashlib
@@ -21,7 +21,7 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Configuration for upload image
 
-UPLOAD_FOLDER = os.path.join(APP_ROOT, '/static')
+UPLOAD_FOLDER = os.path.join(APP_ROOT, 'media')
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -35,9 +35,19 @@ def allowed_file(filename):
 salt = "5gz"
 
 
+# route for media
+@app.route('/media/<path:filename>')
+def download_file(filename):
+    return send_from_directory(UPLOAD_FOLDER, filename, as_attachment=True)
+
 # Search for products : we don't need to register the session because accessible without login
 @app.route("/")
 def index():
+
+    print(APP_ROOT)
+    print(UPLOAD_FOLDER)
+    print("*************")
+    print(app.config['UPLOAD_FOLDER'])
 
     # We get the q: input of user to search product
     q = request.args.get("q")
