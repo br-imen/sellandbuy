@@ -1,4 +1,4 @@
-# SELL&BUY
+# Sellandbuy
 
 ## Table of contents:
 1. [Description](#description)
@@ -16,7 +16,7 @@
 
 <a name="description"></a>
 ### Description:
-SELL&BUY is a web application where users can sell their creations and buy handmade products.
+Sellandbuy is a web application where users can sell their creations and buy handmade products.
 
 This project helps:
 * the user who practice a hobby, to get an opportunity to sell the production of his practice.
@@ -33,7 +33,7 @@ I've got the chance to apply what I've learned from the course. I really enjoyed
 <a name="usage"></a>
 ### Usage:
 1. User-flow to sell a handmade product:
-    - The user access to the web-app by the URL "#"
+    - The user access to the web-app by the URL "https://sellandbuy.herokuapp.com/"
     - He should register if not registred before
     - He logs in
     - He already took a photo of the product to add
@@ -45,7 +45,7 @@ I've got the chance to apply what I've learned from the course. I really enjoyed
     - He can search for products and buy it.
 
 2. User-flow to buy a hand-made product:
-    - The user can access to the web-app at URL "#".
+    - The user can access to the web-app at URL "https://sellandbuy.herokuapp.com/".
     - He search for product
     - He gets a list of products with a picture, price and description.
     - He can choose a product and add it to the basket and buy it. (this feature add to basket and online payment still working on)
@@ -84,7 +84,8 @@ I've got the chance to apply what I've learned from the course. I really enjoyed
 
 <a name="technologies"></a>
 ### Technologies used:
-This web application built with a famework Flask 2.2.3 (Python), SQLITE3, Javascript, Bootstrap 5.0.
+This web application built with a famework Flask 2.2.3 (Python), SQLITE3, Javascript, Bootstrap 5.0 and Heroku, Gunicorn for deploiment of web application.
+The URL to access my web app : "https://sellandbuy.herokuapp.com/"
 
 I choosed these technologies to practice the basics that I got from the course.
 
@@ -294,14 +295,7 @@ In my project there is fixes to do and I'm still completing the feature online p
 
 14- a Mobile app.
 
-
-
--------------------------------NOW-----------------------------------------
-
-
-1- change /edit to /edit-product and /delete to delete-product
-4- deploiement
-
+15- change /edit to /edit-product and /delete to delete-product
 
 <a name="documentation"></a>
 ### Documentation
