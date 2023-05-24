@@ -152,7 +152,7 @@ This is the core of my web application. There is a bunch of imports, some functi
 
 
 - check_product_params:
-    - We need it in two routes ("/add_a_product") ("/edit").
+    - We need it in two routes ("/add-a-product") ("/edit-product").
     - It takes an input 'request' so that we can get all inputs that describe the new product and checks if the user filled all inputs and then will check:
         - if the price has valid format
         - if filename has an allowed extension with a function allowed_file that takes an input filename and then split the name from the extension and then check if the extension part of the file exist in the set ALLOWED_EXTENSIONS.
@@ -199,7 +199,7 @@ This is the core of my web application. There is a bunch of imports, some functi
                 - key 'counter' with an int value that references to the next page: on click of button more, it will await for response.json() so that we can get more products  to display and If there is no more products:
                     - key 'disabled' should have the value "disabled" to disable the button.
     - In my-product.html:
-        - click on edit: will direct you to route /edit
+        - click on edit: will direct you to route /edit-product
 
         - click on add a product: will direct you to route /add-a-product
         - click on delete: will direct you to route /delete
@@ -216,7 +216,7 @@ This is the core of my web application. There is a bunch of imports, some functi
     - login is required
     - Supports two methods:
     - GET:
-        - we get parameters HTTP of products data that is filled in attribute href of <a> tag edit in my_products.html and that is passed to the edit.html by the attribute of action in form tag <form action ="/edit?id={{product.id}}&name_product={{product.name}}&description={{product.description}}&price={{product.price}}&image={{product.image}}&categorie_id={{product.categorie_id}}"...> so that we can get previous data with request.args.get() and render_template("edit.html", variables = previous values) and display it with jinja so that the user know what he putted previously and what he wants to change.
+        - we get parameters HTTP of products data that is filled in attribute href of <a> tag edit in my_products.html and that is passed to the edit.html by the attribute of action in form tag <form action ="/edit-product?id={{product.id}}&name_product={{product.name}}&description={{product.description}}&price={{product.price}}&image={{product.image}}&categorie_id={{product.categorie_id}}"...> so that we can get previous data with request.args.get() and render_template("edit.html", variables = previous values) and display it with jinja so that the user know what he putted previously and what he wants to change.
     - POST:
         - we get the changes that the users made. we check always with the function check_product_params and then we do updates in project.db and redirect to the route /my-products to display all the products and see his changes.
 

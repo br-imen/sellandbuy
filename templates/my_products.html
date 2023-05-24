@@ -28,10 +28,14 @@
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item">{{ "$%0.2f" | format( product.price / 100) }} </li>
                     </ul>
-                    <div class="card-footer">
-                    <small class="text-muted"><a href="/edit-product?id={{product.id}}&name_product={{product.name}}&description={{product.description}}&price={{product.price}}&image={{product.image}}&categorie_id={{product.categorie_id}}" class="btn btn-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Edit</a></small>
-                    <small class="text-muted"><a href="/delete-product?id={{product.id}}" class="btn btn-outline-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Delete</a></small>
+                    <div class="card-body">
+                      <a href="/edit-product?id={{product.id}}&name_product={{product.name}}&description={{product.description}}&price={{product.price}}&image={{product.image}}&categorie_id={{product.categorie_id}}" class="card-link">Edit</a>
+                      <a href="/delete-product?id={{product.id}}" class="card-link">Delete</a>
                     </div>
+                    <!-- <div class="card-footer"> -->
+                    <!-- <small class="text-muted"><a href="/edit-product?id={{product.id}}&name_product={{product.name}}&description={{product.description}}&price={{product.price}}&image={{product.image}}&categorie_id={{product.categorie_id}}" class="btn btn-primary btn-sm">Edit</a></small> -->
+                    <!-- <small class="text-muted"><a href="/delete-product?id={{product.id}}" class="btn btn-outline-primary btn-sm">Delete</a></small> -->
+                    <!-- </div> -->
                 </div>
               </div>
             {% endfor %}
@@ -47,9 +51,10 @@
     let button = document.querySelector("#button");
     let content ;
     let counter = 2;
-    let htmlProduct = "";
+    let htmlProduct;
 
     button.addEventListener('click', async function(){
+      htmlProduct = "";
       let response = await fetch('/my-products?counter=' + counter);
       content = await response.json();
       if (content)
@@ -61,7 +66,7 @@
 
       for ( let id in products)
       {
-        products[id].price = (products[id].price / 100).toFixed(2);
+        product_price = (products[id].price / 100).toFixed(2);
         htmlProduct += '<div class ="col-md-4">';
         htmlProduct += '<div class="card mb-4 box-shadow">';
         htmlProduct += '<img class="card-img-top" src="media/'+products[id].image+'" alt="Card image cap">';
@@ -70,11 +75,11 @@
         htmlProduct += '<p class="card-text">'+products[id].description+'</p>';
         htmlProduct += '</div>';
         htmlProduct += '<ul class="list-group list-group-flush">';
-        htmlProduct += '<li class="list-group-item">$'+products[id].price+'</li>';
+        htmlProduct += '<li class="list-group-item">$'+product_price+'</li>';
         htmlProduct += '</ul>';
-        htmlProduct += '<div class="card-footer">';
-        htmlProduct += '<small class="text-muted"><a href="/edit?id='+products[id].id+'&name_product='+products[id].name+'&description='+products[id].description+'&price='+products[id].price+'&image='+products[id].image+'&categorie_id'+products[id].categorie_id+'" class="btn btn-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Edit</a></small>';
-        htmlProduct += '<small class="text-muted"><a href="/delete-product?id='+products.id+'" class="btn btn-outline-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Delete</a></small>';
+        htmlProduct += '<div class="card-body">';
+        htmlProduct += '<a href="/edit-product?id='+products[id].id+'&name_product='+products[id].name+'&description='+products[id].description+'&price='+products[id].price+'&image='+products[id].image+'&categorie_id'+products[id].categorie_id+'"class="card-link">Edit</a>';
+        htmlProduct += '<a href="/delete-product?id='+products[id].id+'"class="card-link">Delete</a>';
         htmlProduct += '</div>';
         htmlProduct += '</div>';
         htmlProduct += '</div>';

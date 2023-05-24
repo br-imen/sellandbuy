@@ -50,7 +50,6 @@ def index():
 
     # Counter to track the index of active page
     counter = request.args.get("counter", default = 1, type = int)
-
     # If there is no input for search and counter == 1 (at first page / offset == 0), we  just rendering template and quering all products
     if q is None and counter == 1:
         all_products = return_products()
@@ -251,6 +250,7 @@ def my_products():
         if counter == pages:
             disabled = "disabled"
         offset = counter * PRODUCTS_PER_PAGE - PRODUCTS_PER_PAGE
+
 
         # We pass always the index of the next page (counter += 1) in the dict content and we use it in "my_products.html" as parameter in href of #button.
         counter += 1
