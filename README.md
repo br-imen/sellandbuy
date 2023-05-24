@@ -70,11 +70,11 @@ I've got the chance to apply what I've learned from the course. I really enjoyed
 ![logout](logout.gif)
 
 
-- edit_profile:
+- edit-profile:
 ![edit_profile](edit_profile.gif)
 
 
-- delete_profile:
+- delete-profile:
 ![delete_profile](delete_profile.gif)
 
 
@@ -212,7 +212,7 @@ This is the core of my web application. There is a bunch of imports, some functi
         - POST :
             - will check all inputs with the function check_product_params(request).
                 - if passed and no errors, we insert in project.db product's data and then redirect to /my-products.
-- /edit:
+- /edit-product:
     - login is required
     - Supports two methods:
     - GET:
@@ -221,7 +221,7 @@ This is the core of my web application. There is a bunch of imports, some functi
         - we get the changes that the users made. we check always with the function check_product_params and then we do updates in project.db and redirect to the route /my-products to display all the products and see his changes.
 
 
-- /delete:
+- /delete-product:
     - this route to delete the product from the project.db
     - we get the id of product from the HTTP params and execute the query delete of product then return redirect /my-products
 

@@ -1,14 +1,18 @@
 from flask import Flask, request, render_template, redirect, session, send_from_directory
 from flask_session import Session
 from email_validator import validate_email, EmailNotValidError
+
 import hashlib
 import os
 import uuid
 import pathlib
-from werkzeug.utils import secure_filename
+
 from helpers import error, login_required, allowed_file, return_pages_number, return_products, db, PRODUCTS_PER_PAGE
-#import pdb; pdb.set_trace()
-# TO DO  requirements, read me, helpers and verify my html, tests
+
+
+#CREATE TABLE product ( id INTEGER PRIMARY KEY, name TEXT NOT NULL, image TEXT NOT NULL, description TEXT NOT NULL, price INTEGER, created at DATE DEFAULT (datetime('now','localtime')), updated at DATE DEFAULT (datetime('now','localtime')), user_id INTEGER NOT NULL, categorie_id INTEGER NOT NULL, FOREIGN KEY (categorie_id) REFERENCES categorie(id), FOREIGN KEY (user_id) REFERENCES user(id)  ON DELETE CASCADE);
+#CREATE TABLE categorie ( id INTEGER PRIMARY KEY, name TEXT NOT NULL;)
+#CREATE TABLE user ( id INTEGER PRIMARY KEY NOT NULL, username TEXT NOT NULL, first_name TEXT NOT NULL, last_name TEXT NOT NULL, email TEXT NOT NULL, password BYTE NOT NULL, created at DATE DEFAULT (datetime('now','localtime')), updated at DATE DEFAULT (datetime('now','localtime')) );
 
 
 # Configure application
@@ -20,7 +24,6 @@ Session(app)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Configuration for upload image
-
 UPLOAD_FOLDER = os.path.join(APP_ROOT, 'media')
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -30,12 +33,10 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-
 # Global Variable to hash passwords, I used hashlib module:
 salt = "5gz"
 
-
-# route for media
+# Route for media : where uploaded images of user.
 @app.route('/media/<path:filename>')
 def download_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename, as_attachment=True)
@@ -43,11 +44,6 @@ def download_file(filename):
 # Search for products : we don't need to register the session because accessible without login
 @app.route("/")
 def index():
-
-    print(APP_ROOT)
-    print(UPLOAD_FOLDER)
-    print("*************")
-    print(app.config['UPLOAD_FOLDER'])
 
     # We get the q: input of user to search product
     q = request.args.get("q")
@@ -58,6 +54,7 @@ def index():
     # If there is no input for search and counter == 1 (at first page / offset == 0), we  just rendering template and quering all products
     if q is None and counter == 1:
         all_products = return_products()
+        
         # Determine the pages
         pages = return_pages_number(len(all_products))
         products = return_products(pagination=True, offset=0)
@@ -242,7 +239,6 @@ def my_products():
         offset = 0
         disabled = ""
         products = return_products(pagination=True, offset=offset, session_enabled=True)
-        # products = db.execute("SELECT * FROM product WHERE user_id= ? limit ? OFFSET ?;", session["user_id"], PRODUCTS_PER_PAGE, offset)
         if not products or pages == 1:
             return render_template("my_products.html", products = products, disabled = "disabled")
         return render_template("my_products.html", products = products, disabled = disabled)
@@ -259,7 +255,6 @@ def my_products():
         # We pass always the index of the next page (counter += 1) in the dict content and we use it in "my_products.html" as parameter in href of #button.
         counter += 1
         products = return_products(pagination=True, offset=offset, session_enabled=True)
-        # products = db.execute("SELECT * FROM product WHERE user_id= ? limit ? OFFSET ?;", session ["user_id"], PRODUCTS_PER_PAGE, offset)
         content = {'products': products, 'disabled':disabled, 'counter': counter}
         return content
 
@@ -292,10 +287,10 @@ def check_product_params(request):
     # Empty file without a filename.
     if file.filename == '':
         return {'status': 'failed', 'message':"No selected file"}
-
+    
     # Convert price to int
     price = int( float(price) * 100)
-
+    
     # If file exist and valid we are going to load it in folder uploads
     if file and allowed_file(file.filename):
         file_extension = pathlib.Path(file.filename).suffix
@@ -336,21 +331,24 @@ def add():
 
 
 # Edit product
-@app.route ("/edit", methods=["POST","GET"])
+@app.route ("/edit-product", methods=["POST","GET"])
 @login_required
-def edit():
+def edit_product():
     if request.method == "POST":
         id = request.args.get('id', type = int)
-        product = check_product_params(request)
+        response_check = check_product_params(request)
+        if response_check['status'] == 'failed':
+            return error(response_check['message'])
+        product = response_check['content']
         db.execute("UPDATE product SET name = ?, categorie_id = ?,"
-                   "description = ?, image = ?, price = ? "
-                   "WHERE user_id = ? and id = ?;",
-                   product['name'], product['categorie_id'],
-                   product['description'], product['filename'],
-                   product['price'], session["user_id"],id)
+                "description = ?, image = ?, price = ? "
+                "WHERE user_id = ? and id = ?;",
+                product['name'], product['categorie_id'],
+                product['description'], product['filename'],
+                product['price'], session["user_id"],id)
         return redirect("/my-products")
     else:
-        # PASS parameters HTTP of previous inputs of users from database in href  = URL in my_products.html
+        # Passing parameters HTTP of previous inputs of users from database in href  = URL in my_products.html
         categories = db.execute("SELECT * FROM categorie;")
         id = request.args.get('id', type = int)
         name_product = request.args.get('name_product')
@@ -358,7 +356,7 @@ def edit():
         price = request.args.get('price')
         image = request.args.get('image')
         categorie_id = request.args.get('categorie_id')
-        return render_template("edit.html",
+        return render_template("edit_product.html",
             categories = categories,
             id=id,
             name_product=name_product,
@@ -370,7 +368,7 @@ def edit():
 
 
 # Delete
-@app.route("/delete")
+@app.route("/delete-product")
 @login_required
 def delete_product():
     # Delete product from db
@@ -416,6 +414,3 @@ def logout():
     return redirect("/login")
 
 
-#CREATE TABLE product ( id INTEGER PRIMARY KEY, name TEXT NOT NULL, image TEXT NOT NULL, description TEXT NOT NULL, price INTEGER, created at DATE DEFAULT (datetime('now','localtime')), updated at DATE DEFAULT (datetime('now','localtime')), user_id INTEGER NOT NULL, categorie_id INTEGER NOT NULL, FOREIGN KEY (categorie_id) REFERENCES categorie(id), FOREIGN KEY (user_id) REFERENCES user(id)  ON DELETE CASCADE);
-#CREATE TABLE categorie ( id INTEGER PRIMARY KEY, name TEXT NOT NULL;)
-#CREATE TABLE user ( id INTEGER PRIMARY KEY NOT NULL, username TEXT NOT NULL, first_name TEXT NOT NULL, last_name TEXT NOT NULL, email TEXT NOT NULL, password BYTE NOT NULL, created at DATE DEFAULT (datetime('now','localtime')), updated at DATE DEFAULT (datetime('now','localtime')) );

@@ -9,7 +9,7 @@
 
 {%  block main %}
 
-    <form action="/edit?id={{id}}&name_product={{name}}&description={{description}}&price={{price}}&image={{image}}&categorie_id={{categorie_id}}" method="post" class="form" enctype="multipart/form-data">
+    <form action="/edit-product?id={{id}}&name_product={{name}}&description={{description}}&price={{price}}&image={{image}}&categorie_id={{categorie_id}}" method="post" class="form" enctype="multipart/form-data">
 
         <div class="form-group">
         <input type="text" class="form-control" name="product" id="product" value="{{name_product}}">

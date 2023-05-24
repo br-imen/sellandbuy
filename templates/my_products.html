@@ -29,8 +29,8 @@
                       <li class="list-group-item">{{ "$%0.2f" | format( product.price / 100) }} </li>
                     </ul>
                     <div class="card-footer">
-                    <small class="text-muted"><a href="/edit?id={{product.id}}&name_product={{product.name}}&description={{product.description}}&price={{product.price}}&image={{product.image}}&categorie_id={{product.categorie_id}}" class="btn btn-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Edit</a></small>
-                    <small class="text-muted"><a href="/delete?id={{product.id}}" class="btn btn-outline-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Delete</a></small>
+                    <small class="text-muted"><a href="/edit-product?id={{product.id}}&name_product={{product.name}}&description={{product.description}}&price={{product.price}}&image={{product.image}}&categorie_id={{product.categorie_id}}" class="btn btn-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Edit</a></small>
+                    <small class="text-muted"><a href="/delete-product?id={{product.id}}" class="btn btn-outline-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Delete</a></small>
                     </div>
                 </div>
               </div>
@@ -74,7 +74,7 @@
         htmlProduct += '</ul>';
         htmlProduct += '<div class="card-footer">';
         htmlProduct += '<small class="text-muted"><a href="/edit?id='+products[id].id+'&name_product='+products[id].name+'&description='+products[id].description+'&price='+products[id].price+'&image='+products[id].image+'&categorie_id'+products[id].categorie_id+'" class="btn btn-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Edit</a></small>';
-        htmlProduct += '<small class="text-muted"><a href="/delete?id='+products.id+'" class="btn btn-outline-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Delete</a></small>';
+        htmlProduct += '<small class="text-muted"><a href="/delete-product?id='+products.id+'" class="btn btn-outline-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Delete</a></small>';
         htmlProduct += '</div>';
         htmlProduct += '</div>';
         htmlProduct += '</div>';
