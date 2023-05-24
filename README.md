@@ -277,7 +277,7 @@ In my project there is fixes to do and I'm still completing the feature online p
 
 5- use builtin pagination
 
-6- fix validation errors will redirect to the form page after and it's better to do real time validation errors with javascript
+6- fix validation errors it will redirect to the form page after and it's better to do real time validation errors with javascript
 
 7- add owner username to the product
 
@@ -295,7 +295,6 @@ In my project there is fixes to do and I'm still completing the feature online p
 
 14- a Mobile app.
 
-15- change /edit to /edit-product and /delete to delete-product
 
 <a name="documentation"></a>
 ### Documentation
