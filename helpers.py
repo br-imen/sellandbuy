@@ -4,7 +4,7 @@ from functools import wraps
 import math
 
 # Variable for how many products to display per page
-PRODUCTS_PER_PAGE = 3
+PRODUCTS_PER_PAGE = 9
 
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///project.db")

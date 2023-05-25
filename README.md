@@ -84,7 +84,8 @@ I've got the chance to apply what I've learned from the course. I really enjoyed
 
 <a name="technologies"></a>
 ### Technologies used:
-This web application built with a famework Flask 2.2.3 (Python), SQLITE3, Javascript, Bootstrap 5.0 and Heroku, Gunicorn for deploiment of web application.
+This web application built with Python 3.8.10  with a famework Flask 2.2.3, SQLITE3 database, Javascript and Bootstrap 5.0 for frontend and for deployment I used a cloud application Heroku it's a plateform as a web server (PaaS) and Gunicorn a web server gateway interface (WSGI) to specify for how the web server Heroku and my web based application with Python communicate because Python applications cannot be run on a traditional web server.
+
 The URL to access my web app : "https://sellandbuy.herokuapp.com/"
 
 I choosed these technologies to practice the basics that I got from the course.
