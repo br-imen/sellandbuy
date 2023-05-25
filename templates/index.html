@@ -23,6 +23,7 @@
               </div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">{{ "$%0.2f" | format( product.price / 100) }} </li>
+                <li class="list-group-item"><button class="btn btn-secondary btn-sm"> Buy </button></li>
               </ul>
             </div>
           </div>
@@ -61,6 +62,7 @@
         htmlProduct += '</div>';
         htmlProduct += '<ul class="list-group list-group-flush">';
         htmlProduct += '<li class="list-group-item">$'+products[id].price+'</li>';
+        htmlProduct += '<li class="list-group-item"><button class="btn btn-secondary btn-sm"> Buy </button></li>';
         htmlProduct += '</ul>';
         htmlProduct += '</div>';
         htmlProduct += '</div>';
@@ -102,6 +104,7 @@
           htmlProduct += '</div>';
           htmlProduct += '<ul class="list-group list-group-flush">';
           htmlProduct += '<li class="list-group-item">$'+products[id].price+'</li>';
+          htmlProduct += '<li class="list-group-item"><button class="btn btn-secondary btn-sm"> Buy </button></li>';
           htmlProduct += '</ul>';
           htmlProduct += '</div>';
           htmlProduct += '</div>';
