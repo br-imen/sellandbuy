@@ -23,7 +23,7 @@
               </div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">{{ "$%0.2f" | format( product.price / 100) }} </li>
-                <li class="list-group-item"><button class="btn btn-secondary btn-sm"> Buy </button></li>
+                  <button type="button" class="w-100 btn btn-lg btn-primary"><i class="fa fa-shopping-basket"></i> Buy </button>
               </ul>
             </div>
           </div>
@@ -32,10 +32,9 @@
       </div>
   </section>
 
-    <button id="button-more" class="btn btn-primary btn-lg" {{disabled}}>
-     More
-    </button>
-
+  <button id="button-more" type="button" class="btn btn-lg btn-primary" {{disabled}}>
+    <i class="fa fa-arrow-down" aria-hidden="true"></i> More 
+  </button>
 
   <script>
 // when user input "q", will send an url with q and we get an object json "content" to display data of selected products
@@ -62,7 +61,7 @@
         htmlProduct += '</div>';
         htmlProduct += '<ul class="list-group list-group-flush">';
         htmlProduct += '<li class="list-group-item">$'+products[id].price+'</li>';
-        htmlProduct += '<li class="list-group-item"><button class="btn btn-secondary btn-sm"> Buy </button></li>';
+        htmlProduct += '<button type="button" class="w-100 btn btn-lg btn-primary"> <i class="fa fa-basket-shopping"></i> Buy </button>';
         htmlProduct += '</ul>';
         htmlProduct += '</div>';
         htmlProduct += '</div>';
@@ -104,7 +103,7 @@
           htmlProduct += '</div>';
           htmlProduct += '<ul class="list-group list-group-flush">';
           htmlProduct += '<li class="list-group-item">$'+products[id].price+'</li>';
-          htmlProduct += '<li class="list-group-item"><button class="btn btn-secondary btn-sm"> Buy </button></li>';
+          htmlProduct += '<button type="button" class="w-100 btn btn-lg btn-primary"> <i class="fa fa-shopping-basket"></i> Buy </button>';
           htmlProduct += '</ul>';
           htmlProduct += '</div>';
           htmlProduct += '</div>';

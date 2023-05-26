@@ -29,8 +29,16 @@
                       <li class="list-group-item">{{ "$%0.2f" | format( product.price / 100) }} </li>
                     </ul>
                     <div class="card-body">
-                      <a href="/edit-product?id={{product.id}}&name_product={{product.name}}&description={{product.description}}&price={{product.price}}&image={{product.image}}&categorie_id={{product.categorie_id}}" class="card-link">Edit</a>
-                      <a href="/delete-product?id={{product.id}}" class="card-link">Delete</a>
+                      <div class="container">
+                        <div class="row">
+                          <a class="col btn btn-outline-primary" href="/edit-product?id={{product.id}}&name_product={{product.name}}&description={{product.description}}&price={{product.price}}&image={{product.image}}&categorie_id={{product.categorie_id}}">
+                            <i class="fa fa-pencil" aria-hidden="true" style="font-size:30px;"></i>
+                             Edit 
+                          </a>
+                          <div class="col-1"></div>
+                          <a class="col btn btn-outline-primary" href="/delete-product?id={{product.id}}" class="card-link"><i class="fa fa-trash" style="font-size:30px;"></i> Delete </a>
+                        </div>
+                      </div>
                     </div>
                     <!-- <div class="card-footer"> -->
                     <!-- <small class="text-muted"><a href="/edit-product?id={{product.id}}&name_product={{product.name}}&description={{product.description}}&price={{product.price}}&image={{product.image}}&categorie_id={{product.categorie_id}}" class="btn btn-primary btn-sm">Edit</a></small> -->
@@ -44,7 +52,9 @@
       </div>
   </section>
 
-  <button id="button" type="button" class="btn btn-primary" {{disabled}}> More </button>
+  <button id="button" type="button" class="btn btn-lg btn-primary" {{disabled}}>
+    <i class="fa fa-arrow-down" aria-hidden="true"></i> More 
+  </button>
 
   <script>
 
@@ -78,8 +88,13 @@
         htmlProduct += '<li class="list-group-item">$'+product_price+'</li>';
         htmlProduct += '</ul>';
         htmlProduct += '<div class="card-body">';
-        htmlProduct += '<a href="/edit-product?id='+products[id].id+'&name_product='+products[id].name+'&description='+products[id].description+'&price='+products[id].price+'&image='+products[id].image+'&categorie_id'+products[id].categorie_id+'"class="card-link">Edit</a>';
-        htmlProduct += '<a href="/delete-product?id='+products[id].id+'"class="card-link">Delete</a>';
+        htmlProduct += '<div class="container">';
+        htmlProduct += '<div class="row">';
+        htmlProduct += '<a class="col btn btn-outline-primary"  href="/edit-product?id='+products[id].id+'&name_product='+products[id].name+'&description='+products[id].description+'&price='+products[id].price+'&image='+products[id].image+'&categorie_id'+products[id].categorie_id+'"class="card-link"><i class="fa fa-pencil" aria-hidden="true" style="font-size:30px;"></i>Edit</a>';
+        htmlProduct += '<div class="col-1"></div>'
+        htmlProduct += '<a class="col btn btn-outline-primary"  href="/delete-product?id='+products[id].id+'"class="card-link"><i class="fa fa-trash" style="font-size:30px;"></i>Delete</a>';
+        htmlProduct += '</div>';
+        htmlProduct += '</div>';
         htmlProduct += '</div>';
         htmlProduct += '</div>';
         htmlProduct += '</div>';

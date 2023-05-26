@@ -270,31 +270,31 @@ In my project there is fixes to do and I'm still completing the feature online p
 
 1- payment system
 
-2- unit tests
+2- add filter search by categorie
 
-3- use postgresql in database
+3- unit tests
 
-4- use ORM SQLAlchemy
+4- use postgresql in database
 
-5- use builtin pagination
+5- use ORM SQLAlchemy
 
-6- fix validation errors it will redirect to the form page after and it's better to do real time validation errors with javascript
+6- use builtin pagination
 
-7- add owner username to the product
+7- fix validation errors it will redirect to the form page after and it's better to do real time validation errors with javascript
 
-8- add an username in nav
+8- add owner username to the product
 
-9- filter in search
+9- add an username in nav
 
-10- add icons to edit and delete
+10- enhance product's photo display
 
-11- enhance product's photo display
+11- the footer in html sticks in buttom
 
-12- the footer in html sticks in buttom
+12- improve  ux/ui of web application.
 
-13- improve  ux/ui of web application.
+13- a Mobile app.
 
-14- a Mobile app.
+14- fixes to do : delete images from media after deleting the product from database
 
 
 <a name="documentation"></a>
