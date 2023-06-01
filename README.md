@@ -1,4 +1,5 @@
 # Sellandbuy
+#### Video Demo: https://youtu.be/Dwbx_GKSKuc
 
 ## Table of contents:
 1. [Description](#description)
@@ -27,7 +28,7 @@ This is my final project for the certification of CS'50:"Introduction to compute
 I've got the chance to apply what I've learned from the course. I really enjoyed creating this project.
 
 <a name="demo"></a>
-### Video Demo: TODO
+[Video demo youtube](https://youtu.be/Dwbx_GKSKuc)
 
 
 <a name="usage"></a>
@@ -49,37 +50,6 @@ I've got the chance to apply what I've learned from the course. I really enjoyed
     - He search for product
     - He gets a list of products with a picture, price and description.
     - He can choose a product and add it to the basket and buy it. (this feature add to basket and online payment still working on)
-
-
-- Register:
-![register](register.gif)
-
-- Login:
-![login](login.gif)
-
-
-- add-product to sell:
-![add_product](add_product.gif)
-
-
-- edit-delete-product:
-![edit_delete_product](edit_delete_product.gif)
-
-
-- Logout:
-![logout](logout.gif)
-
-
-- edit-profile:
-![edit_profile](edit_profile.gif)
-
-
-- delete-profile:
-![delete_profile](delete_profile.gif)
-
-
-- search to buy:
-![search](search.gif)
 
 
 <a name="technologies"></a>
@@ -274,7 +244,7 @@ In my project there is fixes to do and I'm still completing the feature online p
 
 3- unit tests
 
-4- use postgresql in database
+4- use postgresql as database
 
 5- use ORM SQLAlchemy
 
@@ -288,13 +258,13 @@ In my project there is fixes to do and I'm still completing the feature online p
 
 10- enhance product's photo display
 
-11- the footer in html sticks in buttom
+11- the footer in html to be stick in buttom
 
 12- improve  ux/ui of web application.
 
 13- a Mobile app.
 
-14- fixes to do : delete images from media after deleting the product from database
+14- fixes to do : delete images from media folder after deleting the product from database
 
 
 <a name="documentation"></a>
